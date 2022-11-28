@@ -94,33 +94,41 @@ body{
 
 </body>
 <script>
-var year = new Date().getFullYear();
-var myDate = new Date('2022-12-12 00:00:00');
-console.log(myDate);
 
-// countdown
-let timer = setInterval(function() {
+var a = window.location.search
+var b = a.replace( "?t=", "" )
+var y = b.substr(0,4)
+var m = b.substr(4,2)
+var d = b.substr(6,2)
 
-  // get today's date
-  var today = new Date().getTime();
+if( b != "" )
+{
+    var year = new Date().getFullYear();
+    var myDate = new Date( y + '-' + m + '-' +d +" 00:00:00");
+    console.log(myDate);
 
-  // get the difference
-  var diff = myDate - today;
+    // countdown
+    let timer = setInterval(function() {
 
-  // math
-  let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      // get today's date
+      var today = new Date().getTime();
 
-  // display
-  document.getElementById("days").innerHTML=days
-  document.getElementById("hours").innerHTML=hours
-  document.getElementById("minutes").innerHTML=minutes
-  document.getElementById("seconds").innerHTML=seconds
+      // get the difference
+      var diff = myDate - today;
 
+      // math
+      let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
+      // display
+      document.getElementById("days").innerHTML=days
+      document.getElementById("hours").innerHTML=hours
+      document.getElementById("minutes").innerHTML=minutes
+      document.getElementById("seconds").innerHTML=seconds
 
-}, 1);
+    }, 1)
+};
 </script>
 </html>
