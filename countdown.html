@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- 1990년 이후 이 페이지의 캐시를 만료시킴. -->
+    <meta http-equiv="Expires" content="Mon, 06 Jan 1990 00:00:01 GMT" />
+    <!-- 캐시를 바로 만료시킴. -->
+    <meta http-equiv="Expires" content="-1" />
+    <!-- 페이지 로드시마다 페이지를 캐싱하지 않음. (HTTP 1.0) -->
+    <meta http-equiv="Pragma" content="no-cache" />
+    <!-- 페이지 로드시마다 페이지를 캐싱하지 않음. (HTTP 1.1) -->
+    <meta http-equiv="Cache-Control" content="no-cache" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
@@ -37,7 +45,7 @@ var b = a.replace( "?t=", "" )
 var y = b.substr(0,4)
 var m = b.substr(4,2)
 var d = b.substr(6,2)
-console.log( "targetDate : ",b );
+console.log( "targetDate : ", b );
 if( b != "" )
 {
     var year = new Date().getFullYear();
@@ -45,7 +53,7 @@ if( b != "" )
     console.log(myDate);
 
     // countdown
-    let timer = setInterval(function() {
+    var timer = setInterval(function() {
 
       // get today's date
       var today = new Date().getTime();
@@ -54,10 +62,10 @@ if( b != "" )
       var diff = myDate - today;
 
       // math
-      let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
       // display
       document.getElementById("days").innerHTML=days
