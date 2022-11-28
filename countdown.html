@@ -44,17 +44,19 @@
   d : "2022-12-12"
 }
 */
+
+
+
 var a = decodeURI( window.location.search );
-var b = a.replace( "?d=", "" )
-var _d = JSON.parse( b ); 
+var _d = Object.fromEntries(new URLSearchParams(location.search));
 // var y = _d.d.substr(0,4)
 // var m = _d.d.substr(4,2)
 // var d = _d.d.substr(6,2)
-console.log( "targetDate : ", _d.d );
-if( _d.d != "" )
+console.log( "targetDate : ", _d.dt );
+if( _d.dt != "" )
 {
     var year = new Date().getFullYear();
-    var myDate = new Date( _d.d +" 00:00:00");
+    var myDate = new Date( _d.dt +" 00:00:00");
     console.log(myDate);
 
     // countdown
