@@ -44,7 +44,7 @@
   d : "2022-12-12"
 }
 */
-var a = window.location.search
+var a = decodeURIComponent( window.location.search );
 var b = a.replace( "?d=", "" )
 var _d = JSON.parse( b ); 
 // var y = _d.d.substr(0,4)
