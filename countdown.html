@@ -102,18 +102,18 @@ body{
 
 </body>
 <script>
-    const year = new Date().getFullYear();
-const myDate = new Date('2022-12-12 00:00:00');
+var year = new Date().getFullYear();
+var myDate = new Date('2022-12-12 00:00:00');
 console.log(myDate);
 
 // countdown
 let timer = setInterval(function() {
 
   // get today's date
-  const today = new Date().getTime();
+  var today = new Date().getTime();
 
   // get the difference
-  const diff = myDate - today;
+  var diff = myDate - today;
 
   // math
   let days = Math.floor(diff / (1000 * 60 * 60 * 24));
