@@ -39,17 +39,22 @@
       
 </body>
 <script>
-
+/*
+{
+  d : "2022-12-12"
+}
+*/
 var a = window.location.search
-var b = a.replace( "?t=", "" )
-var y = b.substr(0,4)
-var m = b.substr(4,2)
-var d = b.substr(6,2)
-console.log( "targetDate : ", b );
-if( b != "" )
+var b = a.replace( "?d=", "" )
+var _d = JSON.parse( b ); 
+// var y = _d.d.substr(0,4)
+// var m = _d.d.substr(4,2)
+// var d = _d.d.substr(6,2)
+console.log( "targetDate : ", _d.d );
+if( _d.d != "" )
 {
     var year = new Date().getFullYear();
-    var myDate = new Date( y + '-' + m + '-' +d +" 00:00:00");
+    var myDate = new Date( _d.d +" 00:00:00");
     console.log(myDate);
 
     // countdown
