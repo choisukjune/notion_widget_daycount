@@ -25,17 +25,24 @@
           font-family: 'Noto Sans KR', sans-serif;
         }
         .numbers {
-          font-size: 40px;
+          font-size:  5em;
+        }
+        .title{
+          font-size: 8em;
+          font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div>
-      <span id="days" class="numbers"></span>일
-      <span  id="hours" class="numbers"></span>시간
-      <span  id="minutes" class="numbers"></span>분
-      <span id="seconds" class="numbers"></span>초
-    </div>
+  <div>
+    <span id="subject" class="title"></span>
+  </div>
+  <div>
+    <span id="days" class="numbers"></span>일
+    <span  id="hours" class="numbers"></span>시간
+    <span  id="minutes" class="numbers"></span>분
+    <span id="seconds" class="numbers"></span>초
+  </div>
       
 </body>
 <script>
@@ -75,6 +82,7 @@ if( _d.dt != "" )
       var seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
       // display
+      document.getElementById("subject").innerHTML=_d.t
       document.getElementById("days").innerHTML=days
       document.getElementById("hours").innerHTML=hours
       document.getElementById("minutes").innerHTML=minutes
