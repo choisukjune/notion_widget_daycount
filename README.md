@@ -1,2 +1,2 @@
-# notion_widget_daycount
-notion_widget_daycount
+# notion_widgets
+notion_widgets
