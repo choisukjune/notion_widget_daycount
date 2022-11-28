@@ -13,24 +13,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-      
         html,
         body {
           width: 100%;
           height: 100%;
-          /* display: flex;
+          display: flex;
           justify-content: center;
-          align-items: center; */
+          align-items: center;
           @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
           font-family: 'Noto Sans KR', sans-serif;
         }
-        .numbers {
-          font-size:  4em;
+        .countdown.numbers {
+          font-size:  3em;
           font-weight: bold;
-        }
-        .title{
-          font-size: 3em;
+		  text-align: center;
+		}
+        .countdown.title{
+          font-size: 2em;
           font-weight: bold;
+		  text-align: center;
         }
         .centered {
           position: fixed;
@@ -42,62 +43,54 @@
     </style>
 </head>
 <body>
-    <div>
-      <p id="subject" class="title"></p>
-      <p>
-        <span id="days" class="numbers"></span>일
-        <span id="hours" class="numbers"></span>시간
-        <span id="minutes" class="numbers"></span>분
-        <span id="seconds" class="numbers"></span>초
-      </p>
-      
-    </div>
-      
+    <div id="content" class="centered"></div>
 </body>
 <script>
-/*
-{
-  d : "2022-12-12"
+var pad = function(n, width){
+	n = n + '';
+	return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
 }
-*/
+var countdown = function(){
+		
+	var a = decodeURI( window.location.search );
+	var _d = Object.fromEntries(new URLSearchParams(location.search));
 
+	if( !_d.dt ) _d.dt = "no data!";
+	if( !_d.t) _d.t = "no data!";
 
-
-var a = decodeURI( window.location.search );
-var _d = Object.fromEntries(new URLSearchParams(location.search));
-// var y = _d.d.substr(0,4)
-// var m = _d.d.substr(4,2)
-// var d = _d.d.substr(6,2)
-console.log( "targetDate : ", _d.dt );
-if( _d.dt != "" )
-{
     var year = new Date().getFullYear();
     var myDate = new Date( _d.dt +" 00:00:00");
     console.log(myDate);
 
-    // countdown
-    var timer = setInterval(function() {
+	// get today's date
+	var today = new Date().getTime();
 
-      // get today's date
-      var today = new Date().getTime();
+	// get the difference
+	var diff = myDate - today;
 
-      // get the difference
-      var diff = myDate - today;
+	// math
+	var d = Math.floor(diff / (1000 * 60 * 60 * 24));
+	var h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	var m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+	var s = Math.floor((diff % (1000 * 60)) / 1000);
 
-      // math
-      var days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((diff % (1000 * 60)) / 1000);
+	
+	var r = `
+	<div id="subject" class="countdown title">${_d.t}</div>
+      <div>
+        <span id="days" class="countdown numbers">${pad(d,2)}일</span>
+        <span id="hours" class="countdown numbers">${pad(h,2)}시간</span>
+        <span id="minutes" class="countdown numbers">${pad(m,2)}분</span>
+        <span id="seconds" class="countdown numbers">${pad(s,2)}초</span>
+      </div>
+	`;
+	
+	var _tDom = window.document.getElementById("content")
+		_tDom.innerHTML=r;
 
-      // display
-      document.getElementById("subject").innerHTML=_d.t
-      document.getElementById("days").innerHTML=days
-      document.getElementById("hours").innerHTML=hours
-      document.getElementById("minutes").innerHTML=minutes
-      document.getElementById("seconds").innerHTML=seconds
-
-    }, 1)
-};
+	//return;
+}
+var timer = setInterval(function(){countdown();}, 1000000)
+countdown()
 </script>
 </html>
